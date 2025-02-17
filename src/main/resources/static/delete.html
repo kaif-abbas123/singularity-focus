@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete User Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+	<script>
+	    async function deleteUser() {
+	        const userId = document.getElementById("userId").value;
+	        try {
+	            const response = await fetch(`http://localhost:8050/user/${userId}`, {
+	                method: 'DELETE',
+	            });
+
+	            if (response.ok) {
+	                alert("User deleted successfully");
+	            } else {
+	                alert("Failed to delete user");
+	            }
+	        } catch (error) {
+	            console.error("Error:", error);
+	            alert("An error occurred while deleting the user");
+	        }
+	    }
+	</script>
+
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="singularityfocus.png" alt="Singularity Focus" width="40" height="32" class="d-inline-block align-text-top">
+                Singularity Focus
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1 class="mt-5">Delete User</h1>
+        <form onsubmit="event.preventDefault(); deleteUser();">
+            <div class="form-group">
+                <label for="userId">User ID:</label>
+                <input type="text" class="form-control" id="userId" placeholder="Enter User ID" required>
+            </div>
+            <button type="submit" class="btn btn-danger">Delete User</button>
+        </form>
+    </div>
+</body>
+</html>
